@@ -1,3 +1,14 @@
+#!/usr/bin/env python
+# -*- encoding: utf-8 -*-
+'''
+@File    :   test.py
+@Time    :   2022/11/06 14:08:02
+@Author  :   Yuang Tong 
+@Contact :   yuangtong1999@gmail.com
+'''
+
+# here put the import lib
+
 import sys
 from PyQt5.QtWidgets import QMainWindow,QWidget,QApplication
 
