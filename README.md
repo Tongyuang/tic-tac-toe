@@ -26,7 +26,12 @@ pip install requirements.txt
 python test.py
 ```
 
-Enjoy!
+### How to play
+
+The menu bar have two functions: Restart and Revoke.
+
+- Restart button can clear the board and start a new game.
+- Revoke button is for one step backward.
 
 ### Author
 
