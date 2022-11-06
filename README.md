@@ -30,7 +30,9 @@ Enjoy!
 
 ### Author
 
-@ Author: (Yuri) Yuang Tong
+@ Author: (Yuri) Yuang Tong 
+
 @ Date: Nov. 6, 2022
+
 @ Contact: yuangtong.work@gmail.com
 
