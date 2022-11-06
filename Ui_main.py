@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-# Form implementation generated from reading ui file '/Users/tongyuang/study/UWGIX/Course/TECHIN 509/Practice/Week-5/main.ui'
+# Form implementation generated from reading ui file '/Users/tongyuang/study/UWGIX/Course/TECHIN 509/Practice/Week-5/tic-tac-toe/main.ui'
 #
 # Created by: PyQt5 UI code generator 5.15.4
 #
@@ -21,6 +21,7 @@ class Ui_MainWindow(object):
         self.Button1_1 = QtWidgets.QPushButton(self.centralwidget)
         self.Button1_1.setGeometry(QtCore.QRect(21, 80, 120, 120))
         self.Button1_1.setAutoFillBackground(True)
+        self.Button1_1.setText("")
         self.Button1_1.setCheckable(False)
         self.Button1_1.setObjectName("Button1_1")
         self.buttonGroup = QtWidgets.QButtonGroup(MainWindow)
@@ -82,12 +83,6 @@ class Ui_MainWindow(object):
         self.Button3_3.setCheckable(False)
         self.Button3_3.setObjectName("Button3_3")
         self.buttonGroup.addButton(self.Button3_3)
-        self.textBrowser = QtWidgets.QTextBrowser(self.centralwidget)
-        self.textBrowser.setGeometry(QtCore.QRect(20, 10, 360, 31))
-        self.textBrowser.setAutoFillBackground(True)
-        self.textBrowser.setFrameShape(QtWidgets.QFrame.NoFrame)
-        self.textBrowser.setFrameShadow(QtWidgets.QFrame.Raised)
-        self.textBrowser.setObjectName("textBrowser")
         self.line = QtWidgets.QFrame(self.centralwidget)
         self.line.setGeometry(QtCore.QRect(21, 320, 360, 2))
         self.line.setFrameShape(QtWidgets.QFrame.HLine)
@@ -103,12 +98,22 @@ class Ui_MainWindow(object):
         self.line_3.setFrameShape(QtWidgets.QFrame.VLine)
         self.line_3.setFrameShadow(QtWidgets.QFrame.Sunken)
         self.line_3.setObjectName("line_3")
-        self.textBrowser_2 = QtWidgets.QTextBrowser(self.centralwidget)
-        self.textBrowser_2.setGeometry(QtCore.QRect(20, 40, 360, 31))
-        self.textBrowser_2.setAutoFillBackground(True)
-        self.textBrowser_2.setFrameShape(QtWidgets.QFrame.NoFrame)
-        self.textBrowser_2.setFrameShadow(QtWidgets.QFrame.Raised)
-        self.textBrowser_2.setObjectName("textBrowser_2")
+        self.label = QtWidgets.QLabel(self.centralwidget)
+        self.label.setGeometry(QtCore.QRect(20, 20, 360, 30))
+        self.label.setTextFormat(QtCore.Qt.PlainText)
+        self.label.setAlignment(QtCore.Qt.AlignCenter)
+        self.label.setObjectName("label")
+        self.label_2 = QtWidgets.QLabel(self.centralwidget)
+        self.label_2.setGeometry(QtCore.QRect(20, 40, 360, 30))
+        self.label_2.setText("")
+        self.label_2.setTextFormat(QtCore.Qt.PlainText)
+        self.label_2.setAlignment(QtCore.Qt.AlignCenter)
+        self.label_2.setObjectName("label_2")
+        self.line_4 = QtWidgets.QFrame(self.centralwidget)
+        self.line_4.setGeometry(QtCore.QRect(20, 200, 360, 2))
+        self.line_4.setFrameShape(QtWidgets.QFrame.HLine)
+        self.line_4.setFrameShadow(QtWidgets.QFrame.Sunken)
+        self.line_4.setObjectName("line_4")
         MainWindow.setCentralWidget(self.centralwidget)
         self.statusbar = QtWidgets.QStatusBar(MainWindow)
         self.statusbar.setObjectName("statusbar")
@@ -135,23 +140,12 @@ class Ui_MainWindow(object):
         self.retranslateUi(MainWindow)
         QtCore.QMetaObject.connectSlotsByName(MainWindow)
 
-
     def retranslateUi(self, MainWindow):
         _translate = QtCore.QCoreApplication.translate
-        MainWindow.setWindowTitle(_translate("MainWindow", "MainWindow"))
-        self.Button1_1.setText(_translate("MainWindow", "1"))
-        self.textBrowser.setHtml(_translate("MainWindow", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
-"<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
-"p, li { white-space: pre-wrap; }\n"
-"</style></head><body style=\" font-family:\'.AppleSystemUIFont\'; font-size:13pt; font-weight:400; font-style:normal;\">\n"
-"<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:18pt; font-weight:600;\">Welcome to Yuang\'s Tik Tak Toe!</span></p></body></html>"))
-        self.textBrowser_2.setHtml(_translate("MainWindow", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
-"<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
-"p, li { white-space: pre-wrap; }\n"
-"</style></head><body style=\" font-family:\'.AppleSystemUIFont\'; font-size:13pt; font-weight:400; font-style:normal;\">\n"
-"<p align=\"center\" style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><br /></p></body></html>"))
+        MainWindow.setWindowTitle(_translate("MainWindow", "Tic Tac Toe"))
+        self.label.setText(_translate("MainWindow", "Welcome to Yuang\'s Tic Tac Toe!"))
         self.menuMain.setTitle(_translate("MainWindow", "Main"))
         self.actionNew_Game.setText(_translate("MainWindow", "New Game"))
-        self.actionHelp.setText(_translate("MainWindow", "Help"))
+        self.actionHelp.setText(_translate("MainWindow", "Revoke"))
         self.actionExit.setText(_translate("MainWindow", "Exit"))
         self.actionExit_2.setText(_translate("MainWindow", "Exit"))
