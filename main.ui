@@ -320,18 +320,18 @@
     <property name="title">
      <string>Main</string>
     </property>
-    <addaction name="actionNew_Game"/>
-    <addaction name="actionHelp"/>
+    <addaction name="actionRestart"/>
+    <addaction name="actionRevoke"/>
     <addaction name="actionExit_2"/>
    </widget>
    <addaction name="menuMain"/>
   </widget>
-  <action name="actionNew_Game">
+  <action name="actionRestart">
    <property name="text">
-    <string>New Game</string>
+    <string>Restart</string>
    </property>
   </action>
-  <action name="actionHelp">
+  <action name="actionRevoke">
    <property name="text">
     <string>Revoke</string>
    </property>
