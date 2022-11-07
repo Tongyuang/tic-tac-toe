@@ -45,6 +45,7 @@ class Game():
             (x,y) = self.input_queue.pop(-1)
             self.board[x][y] = 0
             self.chess = -self.chess
+            self.winner = 0
             return (x,y)
         else:
             return (-1,-1)
