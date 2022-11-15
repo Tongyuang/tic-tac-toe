@@ -29,13 +29,19 @@ class MainWindow(Ui_MainWindow):
         self.circle_icon = QtGui.QIcon(self.settings["circlelogo"])
         self.iconsize = QtCore.QSize(90,90)
         self.setupUi(MainWindow)
-        self.settext(self.settings["starttext"])
+        
         for i,button in enumerate(self.buttonGroup.buttons()):
             button.clicked.connect(partial(self.buttonclicked,i))
             self.buttonGroup.setId(button,i)
-        
+            button.setEnabled(False)
         self.actionRestart.triggered.connect(self.restart_slot)
         self.actionRevoke.triggered.connect(self.revoke_slot)
+        
+        self.actionPvsP.triggered.connect(self.pvp_slot)
+        self.actionPvB.triggered.connect(self.pvb_slot)
+        self.settext(self.settings["starttext"])
+        self.mode = 1 # playing mode, 1 for pvp and 0 for ai
+        
         self.game = Game()
 
     def settext(self,text):
@@ -48,6 +54,16 @@ class MainWindow(Ui_MainWindow):
     def clearicon(self,button_idx):
         self.buttonGroup.button(button_idx).setIcon(QtGui.QIcon())
     # some SLOT functions
+    def showtext(self):
+        winner = self.game.checkwinner()
+        if winner == 2:
+            self.settext(self.settings["drawtext"])
+        elif winner == 1:
+            self.settext(self.settings["circlewintext"])
+        elif winner == -1:
+            self.settext(self.settings["crosswintext"])
+        else:
+            self.settext("Now it's {}'s turn".format("O" if self.game.getchess()==1 else "X"))
     def buttonclicked(self,i):
         # 
         #print(self.game.board)
@@ -56,21 +72,19 @@ class MainWindow(Ui_MainWindow):
         if self.game.put(pos):
             chess_icon = self.circle_icon if chess==1 else self.cross_icon
             self.seticon(i,chess_icon)
-            winner = self.game.checkwinner()
-            if winner == 2:
-                self.settext(self.settings["drawtext"])
-            elif winner == 1:
-                self.settext(self.settings["circlewintext"])
-            elif winner == -1:
-                self.settext(self.settings["crosswintext"])
-            else:
-                self.settext("Now it's {}'s turn".format("O" if self.game.getchess()==1 else "X"))
-    
+            self.showtext()
+            if self.mode==0 and self.game.winner==0:# pvb
+                chess = self.game.getchess()
+                ai_pos = self.game.ai_random_step()
+                chess_icon = self.circle_icon if chess==1 else self.cross_icon
+                self.seticon((ai_pos[0]*3+ai_pos[1]),chess_icon)
+                self.showtext()
     def restart_slot(self):
         self.game.restart()      
         # clear all icons
         for i in range(len(self.buttonGroup.buttons())):
             self.clearicon(i)
+            self.buttonGroup.button(i).setEnabled(False)
         self.settext(self.settings["starttext"])
     
     def revoke_slot(self):
@@ -79,3 +93,18 @@ class MainWindow(Ui_MainWindow):
             idx = pos[0]*3+pos[1]
             self.clearicon(idx)
             self.settext("Now it's {}'s turn".format("O" if self.game.getchess()==1 else "X"))
+    
+    def pvp_slot(self):
+        self.restart_slot()
+        self.mode = 1
+        for i,button in enumerate(self.buttonGroup.buttons()):
+            button.setEnabled(True)
+        self.settext(self.settings["pvptext"])
+            
+    def pvb_slot(self):
+        self.restart_slot()
+        self.mode = 0
+        for i,button in enumerate(self.buttonGroup.buttons()):
+            button.setEnabled(True)
+        self.settext(self.settings["pvbtext"])
+            

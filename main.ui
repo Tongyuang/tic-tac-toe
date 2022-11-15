@@ -320,9 +320,18 @@
     <property name="title">
      <string>Main</string>
     </property>
+    <widget class="QMenu" name="menuNewGame">
+     <property name="title">
+      <string>NewGame</string>
+     </property>
+     <addaction name="separator"/>
+     <addaction name="actionPvB"/>
+     <addaction name="actionPvsP"/>
+    </widget>
     <addaction name="actionRestart"/>
     <addaction name="actionRevoke"/>
     <addaction name="actionExit_2"/>
+    <addaction name="menuNewGame"/>
    </widget>
    <addaction name="menuMain"/>
   </widget>
@@ -344,6 +353,26 @@
   <action name="actionExit_2">
    <property name="text">
     <string>Exit</string>
+   </property>
+  </action>
+  <action name="actionPvP">
+   <property name="text">
+    <string>PvP</string>
+   </property>
+  </action>
+  <action name="actionPvP_2">
+   <property name="text">
+    <string>PvP</string>
+   </property>
+  </action>
+  <action name="actionPvB">
+   <property name="text">
+    <string>PvB</string>
+   </property>
+  </action>
+  <action name="actionPvsP">
+   <property name="text">
+    <string>PvP</string>
    </property>
   </action>
  </widget>

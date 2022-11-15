@@ -22,6 +22,18 @@ class Game():
         self.chess = 1 # 1 for O and -1 for X
         self.winner = 0
     
+    def ai_random_step(self):
+        # make a step from ai
+        pos = np.asarray(np.where(self.board==0)).T
+        # random guss
+        np.random.shuffle(pos)
+        self.put(pos[0])
+        return pos[0]
+    
+    def ai_step(self):
+        # 
+        pass
+        
     def getchess(self):
         return self.chess
 
