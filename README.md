@@ -2,6 +2,9 @@
 
 A simple Tic-Tac-Toe Game, Realized through Python3 and PyQt5.
 
+### Updates
+
+- Update Nov. 15th, 2022: Add a random bot
 ### Pre-requistes:
 ```py
 - Python3
