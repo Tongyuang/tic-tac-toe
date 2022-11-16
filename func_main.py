@@ -18,11 +18,15 @@ from functools import partial
 import json
 
 class MainWindow(Ui_MainWindow):
+    '''
+    The mainWindow class
+    '''
     def setupUi(self, MainWindow):
         super().setupUi(MainWindow)
         
     def setup(self,MainWindow):
-        with open("./settings.json",'r') as rf:
+        '''Setup Mainwindow'''
+        with open("./settings.json",'r') as rf: # load some settings
             self.settings = json.load(rf)
             rf.close()
         self.cross_icon = QtGui.QIcon(self.settings["crosslogo"])
@@ -30,10 +34,15 @@ class MainWindow(Ui_MainWindow):
         self.iconsize = QtCore.QSize(90,90)
         self.setupUi(MainWindow)
         
+        '''
+        set all the button not enabled at the beginning, also set Ids
+        '''
         for i,button in enumerate(self.buttonGroup.buttons()):
             button.clicked.connect(partial(self.buttonclicked,i))
             self.buttonGroup.setId(button,i)
             button.setEnabled(False)
+            
+        '''some trigger functions and slot connections'''
         self.actionRestart.triggered.connect(self.restart_slot)
         self.actionRevoke.triggered.connect(self.revoke_slot)
         
@@ -45,16 +54,22 @@ class MainWindow(Ui_MainWindow):
         self.game = Game()
 
     def settext(self,text):
+        '''
+        use the label to set text
+        '''
         self.label_2.setText(text)
         self.label_2.setAlignment(QtCore.Qt.AlignCenter)
     def seticon(self,button_idx,icon):
+        '''set icon'''
         self.buttonGroup.button(button_idx).setIcon(icon)
         self.buttonGroup.button(button_idx).setIconSize(self.iconsize)
     
     def clearicon(self,button_idx):
+        '''Clear icon'''
         self.buttonGroup.button(button_idx).setIcon(QtGui.QIcon())
     # some SLOT functions
     def showtext(self):
+        '''show the winner's status or who's turn'''
         winner = self.game.checkwinner()
         if winner == 2:
             self.settext(self.settings["drawtext"])
@@ -65,8 +80,7 @@ class MainWindow(Ui_MainWindow):
         else:
             self.settext("Now it's {}'s turn".format("O" if self.game.getchess()==1 else "X"))
     def buttonclicked(self,i):
-        # 
-        #print(self.game.board)
+        '''main button slot functions'''
         pos = (i//3,i%3)
         chess = self.game.getchess()
         if self.game.put(pos):
@@ -80,6 +94,7 @@ class MainWindow(Ui_MainWindow):
                 self.seticon((ai_pos[0]*3+ai_pos[1]),chess_icon)
                 self.showtext()
     def restart_slot(self):
+        '''how to restart'''
         self.game.restart()      
         # clear all icons
         for i in range(len(self.buttonGroup.buttons())):
@@ -88,6 +103,7 @@ class MainWindow(Ui_MainWindow):
         self.settext(self.settings["starttext"])
     
     def revoke_slot(self):
+        '''one step back'''
         pos = self.game.back()
         if pos[0]>-1:
             idx = pos[0]*3+pos[1]
@@ -95,6 +111,7 @@ class MainWindow(Ui_MainWindow):
             self.settext("Now it's {}'s turn".format("O" if self.game.getchess()==1 else "X"))
     
     def pvp_slot(self):
+        '''human vs human'''
         self.restart_slot()
         self.mode = 1
         for i,button in enumerate(self.buttonGroup.buttons()):
@@ -102,6 +119,7 @@ class MainWindow(Ui_MainWindow):
         self.settext(self.settings["pvptext"])
             
     def pvb_slot(self):
+        '''human vs robot'''
         self.restart_slot()
         self.mode = 0
         for i,button in enumerate(self.buttonGroup.buttons()):
