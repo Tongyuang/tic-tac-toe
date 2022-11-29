@@ -9,6 +9,7 @@
 
 # here put the import lib
 import numpy as np
+from log import MyLogger
 
 def make_empty_board():
     return np.zeros((3,3))
@@ -22,6 +23,8 @@ class Game():
         self.input_queue = []
         self.chess = 1 # 1 for O and -1 for X
         self.winner = 0
+        self.Logger = MyLogger()
+        self.player = None
     
     def ai_random_step(self):
         '''ai takes a random step'''

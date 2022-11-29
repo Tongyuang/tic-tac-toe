@@ -2,7 +2,7 @@
 # -*- encoding: utf-8 -*-
 '''
 @File    :   func_main.py
-@Time    :   2022/11/04 23:46:21
+@Time    :   2022/11/29 10:39:07
 @Author  :   Yuang Tong 
 @Contact :   yuangtong1999@gmail.com
 '''
@@ -10,12 +10,17 @@
 # here put the import lib
 
 
+import json
+from functools import partial
+
 from PyQt5 import QtCore, QtGui, QtWidgets
 from PyQt5.QtCore import QSignalMapper
+
+import NameInputMain
+from log import MyLogger
+from logic import Game, make_empty_board
 from Ui_main import Ui_MainWindow
-from logic import Game,make_empty_board
-from functools import partial
-import json
+
 
 class MainWindow(Ui_MainWindow):
     '''
@@ -33,6 +38,7 @@ class MainWindow(Ui_MainWindow):
         self.circle_icon = QtGui.QIcon(self.settings["circlelogo"])
         self.iconsize = QtCore.QSize(90,90)
         self.setupUi(MainWindow)
+        self.Logger = MyLogger()
         
         '''
         set all the button not enabled at the beginning, also set Ids
@@ -52,7 +58,12 @@ class MainWindow(Ui_MainWindow):
         self.mode = 1 # playing mode, 1 for pvp and 0 for ai
         
         self.game = Game()
-
+        # subwindows
+        self.inputwindow = NameInputMain.NameInputMain()
+        self.inputwindow._sgnal.connect(self.setplayername)
+        self.inputwindow.setModal(True)
+        
+        self.playername = None
     def settext(self,text):
         '''
         use the label to set text
@@ -120,9 +131,15 @@ class MainWindow(Ui_MainWindow):
             
     def pvb_slot(self):
         '''human vs robot'''
+        #
+        self.inputwindow.show()
         self.restart_slot()
         self.mode = 0
         for i,button in enumerate(self.buttonGroup.buttons()):
             button.setEnabled(True)
         self.settext(self.settings["pvbtext"])
-            
+    
+    def setplayername(self,name):
+        self.playername = name
+    
+        

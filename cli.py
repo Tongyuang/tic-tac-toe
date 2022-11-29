@@ -91,8 +91,7 @@ def play_in_terminal():
         if input_letter=='N':
             print('Thank you for your playing.')
             break
-                
-        #If 
+
         
         
     

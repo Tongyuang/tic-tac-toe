@@ -26,7 +26,7 @@ pip install requirements.txt
 
 3. In your terminal, try:
 ```py
-python test.py
+python main.py
 ```
 
 ### How to play
