@@ -21,7 +21,7 @@ class MyLogger:
         self.status_dct = {
            1:'Win',
            0:'Draw',
-           -1:'Loss',
+           -1:'Lose',
         }
 
     
@@ -56,15 +56,17 @@ class MyLogger:
     def gettop3(self):
         values = np.array(self.df.values)[:,1:]
         scores = values[:,0]*0+values[:,1]*1+values[:,2]*3
-        
-        
+        scores_rank = np.flip(np.argsort(scores))
+        return self.df.iloc[scores_rank[0:3]]
     
     
 if __name__=="__main__":
     logger = MyLogger()
-    #logger.put('Alan',1)
+    #logger.put('Derrick',1)
     #logger.put('Yuang',1)
-    print(logger.get('Alan'))
+    subdf = logger.gettop3()
+    [name,lose,draw,win] = list(subdf.iloc[0].values)
+    print([name,lose,draw,win])
     #logger.get('Alan')
     logger.save()
                 

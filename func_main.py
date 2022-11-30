@@ -57,6 +57,10 @@ class MainWindow(Ui_MainWindow):
         self.settext(self.settings["starttext"])
         self.mode = 1 # playing mode, 1 for pvp and 0 for ai
         
+        self.ShowTextTop3()
+        
+        self.label_Nowplaying.setText('')
+        
         self.game = Game()
         # subwindows
         self.inputwindow = NameInputMain.NameInputMain()
@@ -84,10 +88,22 @@ class MainWindow(Ui_MainWindow):
         winner = self.game.checkwinner()
         if winner == 2:
             self.settext(self.settings["drawtext"])
+            if self.mode==0:
+                self.Logger.put(self.playername,0)
+                self.Logger.save()
+                self.ShowTextTop3()
         elif winner == 1:
             self.settext(self.settings["circlewintext"])
+            if self.mode==0:
+                self.Logger.put(self.playername,1)
+                self.Logger.save()
+                self.ShowTextTop3()
         elif winner == -1:
             self.settext(self.settings["crosswintext"])
+            if self.mode==0:
+                self.Logger.put(self.playername,-1)
+                self.Logger.save()
+                self.ShowTextTop3()
         else:
             self.settext("Now it's {}'s turn".format("O" if self.game.getchess()==1 else "X"))
     def buttonclicked(self,i):
@@ -104,6 +120,16 @@ class MainWindow(Ui_MainWindow):
                 chess_icon = self.circle_icon if chess==1 else self.cross_icon
                 self.seticon((ai_pos[0]*3+ai_pos[1]),chess_icon)
                 self.showtext()
+            
+    def ShowTextTop3(self):
+        top3_player_df = self.Logger.gettop3()
+        
+        [name,lose,draw,win] = list(top3_player_df.iloc[0].values)
+        self.label_Player1.setText('{}  {}-{}-{}'.format(name,win,draw,lose))
+        [name,lose,draw,win] = list(top3_player_df.iloc[1].values)
+        self.label_Player2.setText('{}  {}-{}-{}'.format(name,win,draw,lose,))
+        [name,lose,draw,win] = list(top3_player_df.iloc[2].values)
+        self.label_Player3.setText('{}  {}-{}-{}'.format(name,win,draw,lose))      
     def restart_slot(self):
         '''how to restart'''
         self.game.restart()      
@@ -112,6 +138,8 @@ class MainWindow(Ui_MainWindow):
             self.clearicon(i)
             self.buttonGroup.button(i).setEnabled(False)
         self.settext(self.settings["starttext"])
+        self.ShowTextTop3()
+
     
     def revoke_slot(self):
         '''one step back'''
@@ -141,5 +169,6 @@ class MainWindow(Ui_MainWindow):
     
     def setplayername(self,name):
         self.playername = name
+        self.label_Nowplaying.setText("Now Playing: {}".format(self.playername))
     
         
