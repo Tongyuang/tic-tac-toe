@@ -1,27 +1,28 @@
 <!DOCTYPE html>
 <head>
-    <link rel="stylesheet" href="{{url_for('static', filename='style.css')}}">
+    <link rel="stylesheet" href="{{url_for('static', filename='css/style.css')}}">
+    <script src="/static/js/script.js"></script>
 </head>
 
-<div class="container">
+<div class="container" id="gamemode" value="pvb">
     <h1>Welcome! {{ username1 }}</h1>
     <h1>Tic-Tac-Toe</h1>
     <div class="play-area">
         <table>
             <tr>
-                <td><div id="block_0" class="block"></div></td>
-                <td><div id="block_1" class="block"></div></td>
-                <td><div id="block_2" class="block"></div></td>
+                <td><button onclick="Onclicked(0)" id="block_0" class="block"></button></td>
+                <td><button onclick="Onclicked(1)" id="block_1" class="block"></button></td>
+                <td><button onclick="Onclicked(2)" id="block_2" class="block"></button></td>
             </tr>
             <tr>
-                <td><div id="block_3" class="block"></div></td>
-                <td><div id="block_4" class="block"></div></td>
-                <td><div id="block_5" class="block"></div></td>
+                <td><button onclick="Onclicked(3)" id="block_3" class="block"></button></td>
+                <td><button onclick="Onclicked(4)" id="block_4" class="block"></button></td>
+                <td><button onclick="Onclicked(5)" id="block_5" class="block"></button></td>
             </tr>
             <tr>
-                <td><div id="block_6" class="block"></div></td>
-                <td><div id="block_7" class="block"></div></td>
-                <td><div id="block_8" class="block"></div></td>
+                <td><button onclick="Onclicked(6)" id="block_6" class="block"></button></td>
+                <td><button onclick="Onclicked(7)" id="block_7" class="block"></button></td>
+                <td><button onclick="Onclicked(8)" id="block_8" class="block"></button></td>
             </tr>
         </table>  
     </div>

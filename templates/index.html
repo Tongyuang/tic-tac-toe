@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <head>
-    <!-- <link rel="stylesheet" type="text/css" href="styles.css"> -->
+    <link rel="stylesheet" href="{{url_for('static', filename='css/style.css')}}">
 </head>
 
 <body>
@@ -28,10 +28,10 @@
         </legend>
         <div>
 
-            <input type="radio" id="pvb" name="radio" value="pvb">
+            <input type="radio" id="radio" name="radio" value="pvb">
             <label for="pvbradio">PVB_(player vs bot)</label>
 
-            <input type="radio" id="pvp" name="radio" value="pvp">
+            <input type="radio" id="radio" name="radio" value="pvp">
             <label for="pvpradio">PVP (player vs bot)</label>
         </div>
     </fieldset>
