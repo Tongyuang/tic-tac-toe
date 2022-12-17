@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<head>
+    <!-- <link rel="stylesheet" type="text/css" href="styles.css"> -->
+</head>
+
+<body>
+
+
+
+<div>
+    <h1>Welcome to Yuang's Tic Tac Toe</h1>
+</div>
+
+<form method="POST">
+    <fieldset>
+        <legend>
+            Please enter your name here:
+        </legend>
+        <p>
+            Your name:
+            <input type="text" id="name1" name="name1">
+        </p>
+    </fieldset>
+
+    <fieldset>
+        <legend>
+            Please select the game mode:
+        </legend>
+        <div>
+
+            <input type="radio" id="pvb" name="radio" value="pvb">
+            <label for="pvbradio">PVB_(player vs bot)</label>
+
+            <input type="radio" id="pvp" name="radio" value="pvp">
+            <label for="pvpradio">PVP (player vs bot)</label>
+        </div>
+    </fieldset>
+    <fieldset>
+        <legend>
+            Please enter another player's name here(If in PVP Mode)
+        </legend>
+        <p>
+            Your name:
+
+            <input type="text" id="name2" name="name2">
+        </p>
+
+    </fieldset>
+
+    
+    <div>
+        <button type="submit" name="playbutton">Play</button>
+    </div>
+  </form>
+
+</body>
