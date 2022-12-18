@@ -1,29 +1,37 @@
 <!DOCTYPE html>
 <head>
     <link rel="stylesheet" href="{{url_for('static', filename='css/style.css')}}">
-    
+    <script src="/static/js/script.js"></script>
 </head>
 
-<div class="container">
-    <h1>Welcome! {{ username1 }} and {{username2}}</h1>
-    <h1>Tic-Tac-Toe</h1>
+<div class="container" id="gamemode" value="pvp">
+    <h1>Welcome! {{ username1 }} and {{ username2 }}</h1>
+
+    <label id="status" name="status">Hello</label>
     <div class="play-area">
         <table>
             <tr>
-                <td><div id="block_0" class="block"></div></td>
-                <td><div id="block_1" class="block"></div></td>
-                <td><div id="block_2" class="block"></div></td>
+                <td><button id="block_0" onclick="Onclicked(0)" class="block"></button></td>
+                <td><button id="block_1" onclick="Onclicked(1)" class="block"></button></td>
+                <td><button id="block_2" onclick="Onclicked(2)" class="block"></button></td>
             </tr>
             <tr>
-                <td><div id="block_3" class="block"></div></td>
-                <td><div id="block_4" class="block"></div></td>
-                <td><div id="block_5" class="block"></div></td>
+                <td><button id="block_3" onclick="Onclicked(3)" class="block"></button></td>
+                <td><button id="block_4" onclick="Onclicked(4)" class="block"></button></td>
+                <td><button id="block_5" onclick="Onclicked(5)" class="block"></button></td>
             </tr>
             <tr>
-                <td><div id="block_6" class="block"></div></td>
-                <td><div id="block_7" class="block"></div></td>
-                <td><div id="block_8" class="block"></div></td>
+                <td><button id="block_6" onclick="Onclicked(6)" class="block"></button></td>
+                <td><button id="block_7" onclick="Onclicked(7)" class="block"></button></td>
+                <td><button id="block_8" onclick="Onclicked(8)" class="block"></button></td>
             </tr>
         </table>  
+        <div align="center">
+
+            <button class="button" id="Restart" onclick="Restart()" type="submit" name="Restart">Restart</button>
+            <button class="button" type="submit" name="menubutton">Back</button>
+        
+        </div>
     </div>
-  </div>
+</div>
+

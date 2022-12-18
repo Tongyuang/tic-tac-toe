@@ -15,7 +15,6 @@ def game():
             # return render_template("pvbgame.html",username1=user1)
         if mode == "pvp":
             return redirect(url_for('pvpgame',username1=user1,username2=user2))
-            return render_template("pvpgame.html",username1=user1,username2=user2)
         
     return render_template("index.html")
 
