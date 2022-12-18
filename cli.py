@@ -10,6 +10,7 @@
 # here put the import lib
 from logic import make_empty_board,Game
 import json
+from log import MyLogger
 
 # This file contains the Command Line Interface (CLI) for
 # the Tic-Tac-Toe game. This is where input and output happens.
@@ -34,6 +35,7 @@ def get_str_board():
         output_str += "\n"
     return output_str
 def play_in_terminal():
+    Logger = MyLogger()
     game = Game()
     with open("./settings.json",'r') as rf: # load some settings
         settings = json.load(rf)

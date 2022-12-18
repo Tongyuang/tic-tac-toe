@@ -2,6 +2,7 @@ import numpy as np
 import pandas as pd
 import os
 import json
+import matplotlib.pyplot as plt
 
 class MyLogger:
     def __init__(self):
@@ -47,7 +48,6 @@ class MyLogger:
     def get(self,name):
         if name in self.names:
             return np.array(self.df.values)[:,1:]
-            return self.df[self.df["Name"]==name].values[0][1:]
         else:
             return [-1,-1,-1]
     def save(self):
@@ -59,14 +59,27 @@ class MyLogger:
         scores_rank = np.flip(np.argsort(scores))
         return self.df.iloc[scores_rank[0:3]]
     
+    def gettopk(self,k):
+        values = np.array(self.df.values)[:,1:]
+        scores = values[:,0]*0+values[:,1]*1+values[:,2]*3
+        scores_rank = np.flip(np.argsort(scores))
+        return self.df.iloc[scores_rank[0:k]]
     
 if __name__=="__main__":
     logger = MyLogger()
-    #logger.put('Derrick',1)
-    #logger.put('Yuang',1)
+
     subdf = logger.gettop3()
     [name,lose,draw,win] = list(subdf.iloc[0].values)
     print([name,lose,draw,win])
-    #logger.get('Alan')
-    logger.save()
+    
+    rankings = logger.gettopk(len(logger.df))
+    name = list(rankings["Name"])
+    scores = list(np.asarray(rankings["Win"]*3+np.asarray(rankings["Draw"])))
+    
+    plt.bar(name,scores)
+    plt.xlabel('Name')
+    plt.ylabel('Score')
+    plt.title('WorldRanking')
+    plt.savefig('./imgs/worldranking.png')
+
                 
