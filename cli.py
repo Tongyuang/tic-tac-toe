@@ -11,6 +11,7 @@
 from logic import make_empty_board,Game
 import json
 from log import MyLogger
+import numpy as np
 
 # This file contains the Command Line Interface (CLI) for
 # the Tic-Tac-Toe game. This is where input and output happens.
@@ -37,6 +38,7 @@ def get_str_board():
 def play_in_terminal():
     Logger = MyLogger()
     game = Game()
+    name = None
     with open("./settings.json",'r') as rf: # load some settings
         settings = json.load(rf)
         rf.close()
@@ -51,6 +53,8 @@ def play_in_terminal():
     while(True):
         while(mode not in ["1","2"]):
             mode = input("Please select game mode to play, 1 for single player, 2 for multiple player: ")
+        if mode == "1":
+            name = input("Please input player name: ")
         while(game.checkwinner()==0):
 
             
@@ -82,12 +86,23 @@ def play_in_terminal():
 
         if game.checkwinner()==1:
             print('Winner is O!')
-        elif game.checkwinner()==1:
+        elif game.checkwinner()==-1:
             print('Winner is X!')
         elif game.checkwinner()==2:
             print('Draw!')
         mode = 0
         input_letter = None
+        # record
+        if mode=="1":
+            Logger.put(name,game.checkwinner())
+        
+        top3_df = Logger.gettop3()
+        names = list(top3_df["Name"])
+        scores = list(np.asarray(top3_df["Win"]*3+np.asarray(top3_df["Draw"])))
+        print('Rankings:')
+        for i in range(3):
+            print('Name:{},Score:{}'.format(names[i],scores[i]))
+        
         while(input_letter not in ['Y','N']):
             input_letter = input("Play Again? Y/N:").upper()
         if input_letter=='N':
