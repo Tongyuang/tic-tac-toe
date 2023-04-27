@@ -6,7 +6,7 @@ A simple Tic-Tac-Toe Game, Realized through Python3 + HTML + JavaScript
 
 ### Author
 
-@ Author: (Yuri) Yuang Tong 
+@ Author: (Reon) Yuang Tong 
 
 @ Date: Nov. 17, 2022
 
